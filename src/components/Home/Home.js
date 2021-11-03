@@ -1,12 +1,12 @@
 import './Home.css';
-import logo from '../../steven.jpg';
+import avatar from '../../img/steven.png';
 import SocialButtons from '../SocialButtons/SocialButtons';
 
 const Home = () => {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
+    <div className='home'>
+      <header className='header'>
+        <img src={avatar} className='avatar' alt='avatar' />
         <p>
           Steven Enriquez
         </p>
