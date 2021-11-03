@@ -1,6 +1,8 @@
 import { IconButton } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import css from './SocialButtons.css'; 
 
 const SocialButtons = () => {
@@ -14,6 +16,11 @@ const SocialButtons = () => {
             name: 'Twitter',
             link: 'https://www.twitter.com/thatdevsteven',
             icon: <TwitterIcon />
+        },
+        {
+            name: 'LinkedIn',
+            link: 'https://www.linkedin.com/in/stevenenriquez',
+            icon: <LinkedInIcon />
         }
     ];
 
