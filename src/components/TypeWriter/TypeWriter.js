@@ -12,7 +12,7 @@ const TypeWriter = props => {
         if(props) {
             setInput(props.words);
         }
-    }, []);
+    }, [props]);
 
     useEffect(() => {
         const blinkTimeout = setTimeout(() => {
@@ -22,7 +22,6 @@ const TypeWriter = props => {
     }, [blinkCursor])
 
     useEffect(() => {
-
         if(wordIndex === input.length) {
             return;
         }
