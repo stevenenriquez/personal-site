@@ -5,6 +5,7 @@
 .avatar {
   height: 40vmin;
   pointer-events: none;
+  color: transparent;
 }
 
 .header {
