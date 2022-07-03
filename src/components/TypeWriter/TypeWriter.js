@@ -10,7 +10,7 @@ const TypeWriter = props => {
 
     useEffect(() => {
         if(props) {
-            setInput(props.words);
+            setInput(props.text);
         }
     }, [props]);
 
@@ -48,7 +48,9 @@ const TypeWriter = props => {
 
     return (
         <div className='text'>
-            {input.length > 0 ? ` ${input[wordIndex].substring(0, letterIndex)}${blinkCursor ? "|" : " "}` : ""}
+            <h4>
+                {input.length > 0 ? ` ${input[wordIndex].substring(0, letterIndex)}${blinkCursor ? "|" : " "}` : ""}
+            </h4>
         </div>
       );
 }
