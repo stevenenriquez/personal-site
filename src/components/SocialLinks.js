@@ -24,7 +24,7 @@ const SocialLinks = () => {
     const buttons = (
         socials.map(social => {
             return (
-                <a className="m-4 hover:scale-110" 
+                <a className="m-3 hover:scale-110" 
                    href={social.link}
                    key={`${social.name.toLowerCase()}-link`}
                    target='_blank' 
@@ -37,7 +37,7 @@ const SocialLinks = () => {
     );
 
     return (
-        <div className='text-white flex'>
+        <div className='text-white flex border-4 border-gray-800 bg-gray-950 rounded-full p-1'>
             {buttons}
         </div>
     );
