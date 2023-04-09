@@ -26,6 +26,7 @@ const SocialLinks = () => {
             return (
                 <a className="m-4 hover:scale-110" 
                    href={social.link}
+                   key={`${social.name.toLowerCase()}-link`}
                    target='_blank' 
                    rel='noopener noreferrer'
                 >
