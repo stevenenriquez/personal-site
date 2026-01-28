@@ -31,6 +31,7 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .mono {
@@ -98,6 +99,10 @@
     .project:hover {
       opacity: 0.6;
       cursor: pointer;
+    }
+
+    .project:active {
+      opacity: 0.4;
     }
 
     .project p {
