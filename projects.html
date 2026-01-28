@@ -88,14 +88,16 @@
       margin-bottom: 0.25rem;
     }
 
-    .project h2 a {
-      color: var(--text);
+    .project a {
+      color: inherit;
       text-decoration: none;
+      display: block;
       transition: opacity 0.15s ease;
     }
 
-    .project h2 a:hover {
+    .project:hover {
       opacity: 0.6;
+      cursor: pointer;
     }
 
     .project p {
@@ -127,8 +129,10 @@
 
     <main>
       <article class="project">
-        <h2><a href="https://ayy.wtf" target="_blank" rel="noopener noreferrer">fractals</a></h2>
-        <p>an interactive mandelbrot set explorer</p>
+        <a href="https://ayy.wtf" target="_blank" rel="noopener noreferrer">
+          <h2>fractals</h2>
+          <p>an interactive mandelbrot set explorer</p>
+        </a>
       </article>
     </main>
 
