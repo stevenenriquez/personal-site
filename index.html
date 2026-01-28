@@ -51,20 +51,84 @@
       width: 100%;
     }
 
-    header {
-      margin-bottom: 4rem;
-    }
-
-    .path {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
     h1 {
       font-size: 2rem;
       font-weight: normal;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .pronunciation {
+      color: var(--light);
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .word-type {
+      font-style: italic;
+    }
+
+    .definition {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      margin-bottom: 4rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+
+    nav {
+      margin-bottom: 4rem;
+    }
+
+    nav a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.2s ease, opacity 0.15s ease;
+    }
+
+    nav a:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    nav a:hover {
+      padding-left: 0.5rem;
+      opacity: 0.7;
+    }
+
+    nav a span {
+      color: var(--light);
+      font-size: 0.8125rem;
+      margin-left: 0.75rem;
+    }
+
+    .elsewhere {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .elsewhere a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .elsewhere a:hover {
+      color: var(--text);
+    }
+
+    .elsewhere span {
+      margin: 0 0.5rem;
+      color: var(--light);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--light);
     }
 
     @media (min-width: 640px) {
@@ -73,48 +137,13 @@
       }
     }
 
-    section, nav {
-      margin-bottom: 4rem;
+    @media (max-height: 600px) {
+      footer {
+        position: static;
+        margin-top: 4rem;
+      }
     }
 
-    .terminal {
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-
-    .terminal p {
-      margin-bottom: 0.25rem;
-    }
-
-    .prompt {
-      color: var(--light);
-    }
-
-    .indent {
-      padding-left: 1rem;
-    }
-
-    a {
-      color: var(--text);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: opacity 0.15s ease;
-    }
-
-    a:hover {
-      opacity: 0.6;
-    }
-
-    footer {
-      margin-top: 5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    footer p {
-      font-size: 0.75rem;
-      color: var(--light);
-    }
   </style>
 </head>
 <body>
@@ -122,44 +151,29 @@
     <div class="container">
 
       <header>
-        <p class="mono path">~/steven</p>
         <h1>steven enriquez</h1>
-        <div class="mono terminal">
-          <p><span class="prompt">$</span> ping steven</p>
-          <p class="indent">64 bytes from phoenix.az</p>
-        </div>
+        <p class="pronunciation">/ˈstiːvən ɛnˈriːkɛz/ <span class="word-type">noun</span></p>
+        <p class="definition">a developer who builds, breaks, and learns things; found in phoenix, arizona</p>
       </header>
 
-      <section class="mono terminal">
-        <p><span class="prompt">$</span> status</p>
-        <p class="indent">building things</p>
-        <p class="indent">breaking things</p>
-        <p class="indent">learning things</p>
-      </section>
-
-      <section class="mono terminal">
-        <p><span class="prompt">$</span> groups</p>
-        <p class="indent">dad dev fullstack</p>
-      </section>
-
-      <nav class="mono terminal">
-        <p><span class="prompt">$</span> cat links.txt</p>
-        <p class="indent">
-          <a href="https://github.com/stevenenriquez" target="_blank" rel="noopener noreferrer">github</a> &#8594; code
-        </p>
-        <p class="indent">
-          <a href="https://linkedin.com/in/stevenenriquez" target="_blank" rel="noopener noreferrer">linkedin</a> &#8594; resume
-        </p>
-        <p class="indent">
-          <a href="https://twitter.com/stevenedev" target="_blank" rel="noopener noreferrer">x</a> &#8594; thoughts
-        </p>
+      <nav>
+        <a href="/projects.html">projects <span>things i've made</span></a>
+        <a href="/photography.html">photography <span>things i've seen</span></a>
+        <a href="/blog.html">blog <span>things i've thought</span></a>
       </nav>
 
-      <footer>
-        <p class="mono">est. 1998</p>
-      </footer>
+      <p class="elsewhere mono">
+        <a href="https://github.com/stevenenriquez" target="_blank" rel="noopener noreferrer">github</a>
+        <span>/</span>
+        <a href="https://linkedin.com/in/stevenenriquez" target="_blank" rel="noopener noreferrer">linkedin</a>
+        <span>/</span>
+        <a href="https://twitter.com/stevenedev" target="_blank" rel="noopener noreferrer">x</a>
+      </p>
 
     </div>
   </main>
+
+  <footer class="mono">phoenix.az</footer>
+
 </body>
 </html>

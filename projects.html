@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Steven Enriquez">
+  <title>projects / steven</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #1c1917;
+      --muted: #78716c;
+      --light: #a8a29e;
+      --border: #e7e5e4;
+    }
+
+    ::selection {
+      background-color: var(--text);
+      color: var(--bg);
+    }
+
+    html {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .mono {
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      padding: 3rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 32rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--light);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+      transition: color 0.15s ease;
+    }
+
+    .back:hover {
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+    }
+
+    .project {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .project h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      margin-bottom: 0.25rem;
+    }
+
+    .project h2 a {
+      color: var(--text);
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .project h2 a:hover {
+      opacity: 0.6;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .project .meta {
+      color: var(--light);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .empty {
+      color: var(--light);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="/" class="back mono">&larr; steven</a>
+
+    <header>
+      <h1>projects</h1>
+      <p class="subtitle">things i've made</p>
+    </header>
+
+    <main>
+      <p class="empty">coming soon...</p>
+
+      <!-- Example project structure:
+      <article class="project">
+        <h2><a href="#">project name</a></h2>
+        <p>Brief description of what this project does.</p>
+        <p class="meta mono">2024 / typescript, react</p>
+      </article>
+      -->
+    </main>
+
+  </div>
+</body>
+</html>

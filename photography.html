@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photography by Steven Enriquez">
+  <title>photography / steven</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #1c1917;
+      --muted: #78716c;
+      --light: #a8a29e;
+      --border: #e7e5e4;
+    }
+
+    ::selection {
+      background-color: var(--text);
+      color: var(--bg);
+    }
+
+    html {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .mono {
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      padding: 3rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 48rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--light);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+      transition: color 0.15s ease;
+    }
+
+    .back:hover {
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+    }
+
+    .empty {
+      color: var(--light);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="/" class="back mono">&larr; steven</a>
+
+    <header>
+      <h1>photography</h1>
+      <p class="subtitle">things i've seen</p>
+    </header>
+
+    <main>
+      <p class="empty">coming soon...</p>
+
+      <!-- Example gallery structure:
+      <div class="gallery">
+        <img src="/photos/photo1.jpg" alt="Description">
+        <img src="/photos/photo2.jpg" alt="Description">
+        <img src="/photos/photo3.jpg" alt="Description">
+      </div>
+      -->
+    </main>
+
+  </div>
+</body>
+</html>
