@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Steven Enriquez - Full stack developer from Arizona">
+  <title>steven</title>
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #fafaf9;
+      --text: #1c1917;
+      --muted: #78716c;
+      --light: #a8a29e;
+      --border: #e7e5e4;
+    }
+
+    ::selection {
+      background-color: var(--text);
+      color: var(--bg);
+    }
+
+    html {
+      font-family: Georgia, 'Times New Roman', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .mono {
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 28rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 4rem;
+    }
+
+    .path {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+    }
+
+    section, nav {
+      margin-bottom: 4rem;
+    }
+
+    .terminal {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .terminal p {
+      margin-bottom: 0.25rem;
+    }
+
+    .prompt {
+      color: var(--light);
+    }
+
+    .indent {
+      padding-left: 1rem;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.15s ease;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
+    footer {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--light);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+
+      <header>
+        <p class="mono path">~/steven</p>
+        <h1>steven enriquez</h1>
+        <div class="mono terminal">
+          <p><span class="prompt">$</span> ping steven</p>
+          <p class="indent">64 bytes from phoenix.az</p>
+        </div>
+      </header>
+
+      <section class="mono terminal">
+        <p><span class="prompt">$</span> status</p>
+        <p class="indent">building things</p>
+        <p class="indent">breaking things</p>
+        <p class="indent">learning things</p>
+      </section>
+
+      <section class="mono terminal">
+        <p><span class="prompt">$</span> groups</p>
+        <p class="indent">dad dev fullstack</p>
+      </section>
+
+      <nav class="mono terminal">
+        <p><span class="prompt">$</span> cat links.txt</p>
+        <p class="indent">
+          <a href="https://github.com/stevenenriquez" target="_blank" rel="noopener noreferrer">github</a> &#8594; code
+        </p>
+        <p class="indent">
+          <a href="https://linkedin.com/in/stevenenriquez" target="_blank" rel="noopener noreferrer">linkedin</a> &#8594; resume
+        </p>
+        <p class="indent">
+          <a href="https://twitter.com/stevenedev" target="_blank" rel="noopener noreferrer">x</a> &#8594; thoughts
+        </p>
+      </nav>
+
+      <footer>
+        <p class="mono">est. 1998</p>
+      </footer>
+
+    </div>
+  </main>
+</body>
+</html>
