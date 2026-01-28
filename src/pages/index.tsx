@@ -1,26 +1,62 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import SocialLinks from '../components/SocialLinks';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Steven&apos;s Personal Site</title>
-        <meta name="description" content="Steven Enriquez" />
+        <title>steven</title>
+        <meta name="description" content="Steven Enriquez - Full stack developer from Arizona" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-black p-10">
-        <h1 className="text-3xl sm:text-4xl text-white text-center">
-          Hi, my name is Steven 👋
-        </h1>
-        <Image className="rounded-full border-4 border-gray-800 w-max mt-6" src="https://github.com/stevenenriquez.png?size=300" alt="Steven Enriquez" width={300} height={300} />
-        <p className="text-white text-xl sm:text-2xl mt-12 sm:mt-24 mb-12 lg:w-1/3 md:w-1/2 w-3/4 text-center">
-          I&apos;m a full stack web developer from Arizona 🌅 <br/><br/>I&apos;ll be showcasing personal projects, photography, and also writing about topics that interest me. If you&apos;d like, follow me on any of the platforms linked below. Thanks for stopping by.
-        </p>
-        <SocialLinks />
+
+      <main className="min-h-screen flex flex-col justify-center px-6 py-20">
+        <div className="max-w-md mx-auto w-full">
+
+          <header className="mb-16">
+            <p className="mono text-sm text-stone-500 mb-4">~/steven</p>
+            <h1 className="text-3xl sm:text-4xl font-normal mb-6">
+              steven enriquez
+            </h1>
+            <div className="mono text-sm text-stone-500 space-y-1">
+              <p><span className="text-stone-400">$</span> ping steven</p>
+              <p className="pl-4">64 bytes from phoenix.az</p>
+            </div>
+          </header>
+
+          <section className="mb-16 mono text-sm text-stone-600 space-y-1">
+            <p><span className="text-stone-400">$</span> status</p>
+            <p className="pl-4">building things</p>
+            <p className="pl-4">breaking things</p>
+            <p className="pl-4">learning things</p>
+          </section>
+          
+          <section className="mb-16 mono text-sm text-stone-600 space-y-1">
+            <p><span className="text-stone-400">$</span> groups</p>
+            <p className="pl-4">dad dev fullstack</p>
+          </section>
+
+          <nav className="mono text-sm text-stone-600 space-y-1">
+            <p><span className="text-stone-400">$</span> cat links.txt</p>
+            <p className="pl-4">
+              <a href="https://github.com/stevenenriquez" target="_blank" rel="noopener noreferrer">github</a> → code
+            </p>
+            <p className="pl-4">
+              <a href="https://linkedin.com/in/stevenenriquez" target="_blank" rel="noopener noreferrer">linkedin</a> → resume
+            </p>
+            <p className="pl-4">
+              <a href="https://twitter.com/stevenedev" target="_blank" rel="noopener noreferrer">x</a> → thoughts
+            </p>
+          </nav>
+
+          <footer className="mt-20 pt-8 border-t border-stone-200">
+            <p className="mono text-xs text-stone-400">
+              est. 1998
+            </p>
+          </footer>
+
+        </div>
       </main>
     </>
   );
