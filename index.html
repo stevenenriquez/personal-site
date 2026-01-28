@@ -92,9 +92,15 @@
       border-top: 1px solid var(--border);
     }
 
-    nav a:hover {
-      padding-left: 0.5rem;
-      opacity: 0.7;
+    @media (hover: hover) {
+      nav a:hover {
+        padding-left: 0.5rem;
+        opacity: 0.7;
+      }
+    }
+
+    nav a:focus {
+      outline: none;
     }
 
     nav a span {
