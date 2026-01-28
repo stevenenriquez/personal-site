@@ -74,8 +74,14 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      display: flex;
+      gap: 1rem;
+    }
+
+    .gallery .col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
 
@@ -83,17 +89,12 @@
       width: 100%;
       height: auto;
       display: block;
-      filter: grayscale(100%);
-      transition: filter 0.3s ease;
     }
 
-    .gallery img:hover {
-      filter: grayscale(0%);
-    }
-
-    .empty {
-      color: var(--light);
-      font-style: italic;
+    @media (max-width: 480px) {
+      .gallery {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -108,15 +109,18 @@
     </header>
 
     <main>
-      <p class="empty">coming soon...</p>
-
-      <!-- Example gallery structure:
       <div class="gallery">
-        <img src="/photos/photo1.jpg" alt="Description">
-        <img src="/photos/photo2.jpg" alt="Description">
-        <img src="/photos/photo3.jpg" alt="Description">
+        <div class="col">
+          <img src="photography/1.jpg" alt="Photography by Steven Enriquez">
+          <img src="photography/4.jpeg" alt="Photography by Steven Enriquez">
+          <img src="photography/6.jpg" alt="Photography by Steven Enriquez">
+        </div>
+        <div class="col">
+          <img src="photography/2.jpg" alt="Photography by Steven Enriquez">
+          <img src="photography/5.jpeg" alt="Photography by Steven Enriquez">
+          <img src="photography/7.jpeg" alt="Photography by Steven Enriquez">
+        </div>
       </div>
-      -->
     </main>
 
   </div>
