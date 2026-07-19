@@ -55,6 +55,17 @@
       font-size: 2rem;
       font-weight: normal;
       margin-bottom: 0.375rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h1 .letter {
+      display: inline-block;
+      transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.25s ease;
+    }
+
+    h1.is-scrambling .letter {
+      opacity: 0.45;
     }
 
     .pronunciation {
@@ -67,12 +78,82 @@
       font-style: italic;
     }
 
-    .definition {
-      color: var(--muted);
-      font-size: 0.9375rem;
+    .definition-block {
       margin-bottom: 4rem;
       padding-left: 1rem;
       border-left: 2px solid var(--border);
+      transition: border-color 0.25s ease;
+    }
+
+    .definition-block:hover,
+    .definition-block:focus-within {
+      border-left-color: var(--light);
+    }
+
+    .definition {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      min-height: 3.2em;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .definition.is-leaving {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+
+    .definition.is-entering {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    .sense-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .sense-btn {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--light);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.1rem;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .sense-btn:hover,
+    .sense-btn:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .sense-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .sense-index {
+      color: var(--light);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .sense-hint {
+      color: var(--light);
+      font-size: 0.6875rem;
+      margin-left: auto;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .definition-block:hover .sense-hint,
+    .definition-block:focus-within .sense-hint {
+      opacity: 1;
     }
 
     nav {
@@ -133,8 +214,25 @@
       position: fixed;
       bottom: 1.5rem;
       left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
       font-size: 0.75rem;
       color: var(--light);
+      pointer-events: none;
+    }
+
+    footer .clock {
+      margin-left: auto;
+      text-align: right;
+      transition: opacity 0.3s ease;
+    }
+
+    footer .clock .sep {
+      margin: 0 0.35rem;
+      opacity: 0.5;
     }
 
     @media (min-width: 640px) {
@@ -147,6 +245,17 @@
       footer {
         position: static;
         margin-top: 4rem;
+        padding: 0 1.5rem 1.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1 .letter,
+      .definition,
+      nav a,
+      .sense-hint,
+      footer .clock {
+        transition: none;
       }
     }
 
@@ -157,9 +266,17 @@
     <div class="container">
 
       <header>
-        <h1>steven enriquez</h1>
+        <h1 id="name" title="click me" aria-label="steven enriquez">steven enriquez</h1>
         <p class="pronunciation">/ˈstiːvən ɛnˈriːkɛz/ <span class="word-type">noun</span></p>
-        <p class="definition">a developer who builds, breaks, and learns things; found in phoenix, arizona</p>
+        <div class="definition-block">
+          <p class="definition" id="definition" aria-live="polite">a developer who builds, breaks, and learns things; found in phoenix, arizona</p>
+          <div class="sense-controls">
+            <button type="button" class="sense-btn" id="prev-sense" aria-label="Previous definition">←</button>
+            <span class="sense-index mono" id="sense-index">1 / 5</span>
+            <button type="button" class="sense-btn" id="next-sense" aria-label="Next definition">→</button>
+            <span class="sense-hint mono">senses</span>
+          </div>
+        </div>
       </header>
 
       <nav>
@@ -179,7 +296,177 @@
     </div>
   </main>
 
-  <footer class="mono">phoenix.az</footer>
+  <footer class="mono">
+    <span>phoenix.az</span>
+    <span class="clock" id="phoenix-clock" aria-live="polite"></span>
+  </footer>
+
+  <script>
+    (function () {
+      var senses = [
+        'a developer who builds, breaks, and learns things; found in phoenix, arizona',
+        'full-stack tinkerer; frequently observed near a keyboard, occasionally near a camera',
+        'collector of side projects, desert sunsets, and unfinished READMEs',
+        'person who ships small sites, big ideas, and the odd mandelbrot set',
+        'see also: coffee, late-night commits, phoenix heat, saying “one more thing”'
+      ];
+
+      var index = 0;
+      var busy = false;
+      var definitionEl = document.getElementById('definition');
+      var indexEl = document.getElementById('sense-index');
+      var prevBtn = document.getElementById('prev-sense');
+      var nextBtn = document.getElementById('next-sense');
+      var nameEl = document.getElementById('name');
+      var clockEl = document.getElementById('phoenix-clock');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function updateIndex() {
+        indexEl.textContent = (index + 1) + ' / ' + senses.length;
+      }
+
+      function showSense(nextIndex, direction) {
+        if (busy || nextIndex === index) return;
+        busy = true;
+        var entering = senses[nextIndex];
+
+        function finish() {
+          definitionEl.textContent = entering;
+          index = nextIndex;
+          updateIndex();
+          definitionEl.classList.remove('is-leaving');
+          if (reduceMotion) {
+            busy = false;
+            return;
+          }
+          definitionEl.classList.add('is-entering');
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              definitionEl.classList.remove('is-entering');
+              busy = false;
+            });
+          });
+        }
+
+        if (reduceMotion) {
+          finish();
+          return;
+        }
+
+        definitionEl.classList.add('is-leaving');
+        window.setTimeout(finish, 200);
+      }
+
+      function nextSense() {
+        showSense((index + 1) % senses.length, 1);
+      }
+
+      function prevSense() {
+        showSense((index - 1 + senses.length) % senses.length, -1);
+      }
+
+      prevBtn.addEventListener('click', prevSense);
+      nextBtn.addEventListener('click', nextSense);
+      definitionEl.addEventListener('click', nextSense);
+      definitionEl.style.cursor = 'pointer';
+      definitionEl.title = 'click for another sense';
+
+      document.addEventListener('keydown', function (event) {
+        if (event.target && /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
+        if (event.key === 'ArrowRight' || event.key === 'j') {
+          event.preventDefault();
+          nextSense();
+        } else if (event.key === 'ArrowLeft' || event.key === 'k') {
+          event.preventDefault();
+          prevSense();
+        }
+      });
+
+      // Wrap each character so the name can playfully scramble on click.
+      (function wrapLetters() {
+        var text = nameEl.textContent;
+        nameEl.textContent = '';
+        for (var i = 0; i < text.length; i++) {
+          var span = document.createElement('span');
+          span.className = 'letter';
+          span.textContent = text[i] === ' ' ? '\u00a0' : text[i];
+          nameEl.appendChild(span);
+        }
+      })();
+
+      var scrambleTimer = null;
+      nameEl.addEventListener('click', function () {
+        if (reduceMotion) {
+          nextSense();
+          return;
+        }
+        var letters = Array.prototype.slice.call(nameEl.querySelectorAll('.letter'));
+        nameEl.classList.add('is-scrambling');
+        if (scrambleTimer) window.clearTimeout(scrambleTimer);
+
+        letters.forEach(function (letter, i) {
+          var dx = (Math.random() - 0.5) * 18;
+          var dy = (Math.random() - 0.5) * 12;
+          var rot = (Math.random() - 0.5) * 18;
+          letter.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) rotate(' + rot + 'deg)';
+          window.setTimeout(function () {
+            letter.style.transform = '';
+          }, 180 + i * 28);
+        });
+
+        scrambleTimer = window.setTimeout(function () {
+          nameEl.classList.remove('is-scrambling');
+          nextSense();
+        }, 180 + letters.length * 28 + 80);
+      });
+
+      function formatPhoenixTime(date) {
+        try {
+          return new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/Phoenix',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+          }).format(date);
+        } catch (err) {
+          return '';
+        }
+      }
+
+      function sunLabel(date) {
+        try {
+          var parts = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/Phoenix',
+            hour: 'numeric',
+            hour12: false
+          }).formatToParts(date);
+          var hourPart = parts.find(function (part) { return part.type === 'hour'; });
+          var hour = hourPart ? parseInt(hourPart.value, 10) : 12;
+          if (hour >= 5 && hour < 12) return 'morning';
+          if (hour >= 12 && hour < 17) return 'afternoon';
+          if (hour >= 17 && hour < 21) return 'evening';
+          return 'night';
+        } catch (err) {
+          return '';
+        }
+      }
+
+      function tickClock() {
+        var now = new Date();
+        var time = formatPhoenixTime(now);
+        var period = sunLabel(now);
+        if (!time) {
+          clockEl.textContent = '';
+          return;
+        }
+        clockEl.innerHTML = time + (period ? '<span class="sep">/</span>' + period : '');
+      }
+
+      tickClock();
+      window.setInterval(tickClock, 30000);
+      updateIndex();
+    })();
+  </script>
 
 </body>
 </html>
